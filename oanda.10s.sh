@@ -16,9 +16,11 @@ price = client.prices(instruments: MAIN_PAIR).get.first
 puts "#{price.instrument.gsub(/_/, '')}: #{price.ask}"
 puts "---"
 
-prices = client.prices(instruments: SUB_PAIRS).get
-prices.each_with_index do |price, i|
-  puts "#{price.instrument.gsub(/_/, '')}: #{price.ask}"
+unless SUB_PAIRS.empty?
+  prices = client.prices(instruments: SUB_PAIRS).get
+  prices.each_with_index do |price, i|
+    puts "#{price.instrument.gsub(/_/, '')}: #{price.ask}"
+  end
 end
 
 accounts = client.accounts.get
